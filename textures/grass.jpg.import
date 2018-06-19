@@ -7,7 +7,8 @@ path.etc2="res://.import/grass.jpg-7c31b068203bf1d53a3db469e9ee2f5d.etc2.stex"
 
 [deps]
 
-source_md5="6c35c2eb15e548b400dfc7549fe13bab"
+source_file="res://textures/grass.jpg"
+dest_files=[ "res://.import/grass.jpg-7c31b068203bf1d53a3db469e9ee2f5d.s3tc.stex", "res://.import/grass.jpg-7c31b068203bf1d53a3db469e9ee2f5d.etc2.stex" ]
 
 [params]
 

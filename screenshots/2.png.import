@@ -6,7 +6,8 @@ path="res://.import/2.png-16812455ad47ca0c5bda7a73247c6877.stex"
 
 [deps]
 
-source_md5="8a262f6e1676e2115463546fc32d6897"
+source_file="res://screenshots/2.png"
+dest_files=[ "res://.import/2.png-16812455ad47ca0c5bda7a73247c6877.stex" ]
 
 [params]
 

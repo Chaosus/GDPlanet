@@ -7,7 +7,8 @@ path.etc2="res://.import/snow.jpg-14dfad66049ae9ec1cbe03dadd3236a7.etc2.stex"
 
 [deps]
 
-source_md5="9d33db95a877f5c89fb4320a44124852"
+source_file="res://textures/snow.jpg"
+dest_files=[ "res://.import/snow.jpg-14dfad66049ae9ec1cbe03dadd3236a7.s3tc.stex", "res://.import/snow.jpg-14dfad66049ae9ec1cbe03dadd3236a7.etc2.stex" ]
 
 [params]
 

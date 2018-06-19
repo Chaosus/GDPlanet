@@ -7,7 +7,8 @@ path.etc2="res://.import/tile.png-8644383a6c109d9e066d6d3d1e5f8130.etc2.stex"
 
 [deps]
 
-source_md5="70cc2262022916a7bde74103b65a0daf"
+source_file="res://textures/tile.png"
+dest_files=[ "res://.import/tile.png-8644383a6c109d9e066d6d3d1e5f8130.s3tc.stex", "res://.import/tile.png-8644383a6c109d9e066d6d3d1e5f8130.etc2.stex" ]
 
 [params]
 

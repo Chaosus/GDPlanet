@@ -7,7 +7,8 @@ path.etc2="res://.import/rock.jpg-46144f2c16704d479acd484d806d995e.etc2.stex"
 
 [deps]
 
-source_md5="2facef4508c1b9b274b0a27d5584ec4b"
+source_file="res://textures/rock.jpg"
+dest_files=[ "res://.import/rock.jpg-46144f2c16704d479acd484d806d995e.s3tc.stex", "res://.import/rock.jpg-46144f2c16704d479acd484d806d995e.etc2.stex" ]
 
 [params]
 
