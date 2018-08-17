@@ -50,7 +50,7 @@ var quad = [Vector3(),Vector3(),Vector3(),Vector3()]
 func combine_2byte(a, b):
 	return (b << 8) | (a & 0xff)
 	
-func get_index(x, y):
+func get_pindex(x, y):
 	x = wrapi(x, 0, GROUND_X_SIZE)
 	y = wrapi(y, 0, GROUND_Z_SIZE)
 	return x + y * GROUND_X_SIZE
@@ -230,8 +230,6 @@ func _process(delta):
 	engineRotZ = wrapf(engineRotZ, 0.0, 360.0)
 	
 	get_parent().get_node("UI/pos_label").text = str(int(enginePosX)) + "," + str(int(enginePosZ))
-	 
-	#var h = Vector3(0.0, vertexes[get_index(int(enginePosX - 15), int(enginePosZ - 15))].height * 0.01, 0.0)
 	
 	if Input.is_action_just_pressed("change_grid"):
 		mat.set_shader_param("enable_grid", !mat.get_shader_param("enable_grid"))
@@ -258,10 +256,10 @@ func update_transforms():
 	rotation = (Vector3(0,deg2rad(engineRotY),0))
 
 func compute_normal(x, z):
-	var hL = vertexes[get_index(x-1,z)].height
-	var hR = vertexes[get_index(x+1,z)].height
-	var hD = vertexes[get_index(x,z-1)].height
-	var hU = vertexes[get_index(x,z+1)].height
+	var hL = vertexes[get_pindex(x-1,z)].height
+	var hR = vertexes[get_pindex(x+1,z)].height
+	var hD = vertexes[get_pindex(x,z-1)].height
+	var hU = vertexes[get_pindex(x,z+1)].height
 	
 	var N = Vector3()
 	N.x = hL - hR
