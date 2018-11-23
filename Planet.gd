@@ -34,12 +34,6 @@ var st = null
 var map_image
 var map_texture
 
-class Height:
-	var h1
-	var h2
-	var h3
-	var h4
-
 class PlanetVertex:
 	var height = 0.0
 	var volume
@@ -55,14 +49,14 @@ func get_pindex(x, y):
 	y = wrapi(y, 0, GROUND_Z_SIZE)
 	return x + y * GROUND_X_SIZE
 	
+	
 func _ready():	
 
 	map_image = Image.new()
 	map_image.create(128, 128, 0, Image.FORMAT_RGB8)
-	var texture = ImageTexture.new()
 
 	var file = File.new()
-	file.open("faceoff.dat", File.READ)
+	file.open("maps/faceoff.dat", File.READ)
 	var buffer = file.get_buffer(16384 * 2)
 	var data = []
 	var i = 0
@@ -233,7 +227,7 @@ func _process(delta):
 	
 	if Input.is_action_just_pressed("change_grid"):
 		mat.set_shader_param("enable_grid", !mat.get_shader_param("enable_grid"))
-	
+		
 	camera.look_at_from_position(camera_pos, camera_target, Vector3(0,1,0))
 	
 	update_transforms()
@@ -269,26 +263,19 @@ func compute_normal(x, z):
 	
 	return N
 
-var defColor = Color(0.8,0.8,0.8)
-
 func create_mesh():
 	st.clear()
 	st.begin(Mesh.PRIMITIVE_TRIANGLE_STRIP)
 	st.set_material(mat)
 	var z = wrapf(enginePosZ, 0, VIEW_RANGE2)
-	for az in range(VIEW_RANGE2):
+	for az in VIEW_RANGE2:
 		var x =  wrapf(enginePosX, 0, VIEW_RANGE2)
-		for ax in range(VIEW_RANGE2):
-
-			var _x =  int(x) - int(enginePosX) 
-			var _z =  int(z) - int(enginePosZ)
-
+		for ax in VIEW_RANGE2:
 			quad[0] = Vector3(x + VERTEX_OFFSET, 0.0, z + VERTEX_OFFSET)
 			quad[1] = Vector3(x+1 + VERTEX_OFFSET, 0.0, z + VERTEX_OFFSET)
 			quad[2] = Vector3(x + VERTEX_OFFSET, 0.0, z+1 + VERTEX_OFFSET)
 			quad[3] = Vector3(x+1 + VERTEX_OFFSET, 0.0, z+1 + VERTEX_OFFSET)
 
- 
 			st.add_uv(Vector2(0,0))
 			st.add_normal(Vector3(0,1,0))
 			st.add_vertex(quad[0])

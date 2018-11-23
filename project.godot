@@ -19,6 +19,10 @@ config/name="Planet"
 run/main_scene="res://World.tscn"
 config/icon="res://icon.png"
 
+[debug]
+
+gdscript/warnings/unused_argument=false
+
 [display]
 
 window/size/width=1920

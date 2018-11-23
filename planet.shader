@@ -24,26 +24,20 @@ uniform vec2 tpos;
 
 uniform vec2 rpos;
 
+uniform int size = 128;
+
 varying vec4 mtVal;
-
-float wrap(float v)
-{
-	return mod(v, 128.0);
-}
-
-int wrapi(int v)
-{
-	return v % 128;
-}
 
 void vertex()
 {	
-	int x = wrapi(int(VERTEX.x) - int(rpos.x));
-	int z = wrapi(int(VERTEX.z) - int(rpos.y));
-	float hL = texelFetch(map_texture, ivec2(wrapi(x-1), z), 0).r;
-	float hR = texelFetch(map_texture, ivec2(wrapi(x+1), z), 0).r;
-	float hD = texelFetch(map_texture, ivec2(x, wrapi(z-1)), 0).r;
-	float hU = texelFetch(map_texture, ivec2(x, wrapi(z+1)), 0).r;
+	// compute normals
+	
+	int x = (int(VERTEX.x) - int(rpos.x)) % size;
+	int z = (int(VERTEX.z) - int(rpos.y)) % size;
+	float hL = texelFetch(map_texture, ivec2((x-1) % size, z), 0).r;
+	float hR = texelFetch(map_texture, ivec2((x+1) % size, z), 0).r;
+	float hD = texelFetch(map_texture, ivec2(x, (z-1) % size), 0).r;
+	float hU = texelFetch(map_texture, ivec2(x, (z+1) % size), 0).r;
 	vec3 n;
 	n.x = hL - hR;
 	n.y = hD - hU;
@@ -57,11 +51,14 @@ void vertex()
 	VERTEX.z += tpos.y;
 	
 	VERTEX.y = c2 * 2.0;
-
+	
+	// water
+	
 	if(VERTEX.y == 0.0)
 		COLOR = vec4(0.0,0.0,1.0,1.0);
 	else
 		COLOR = vec4(1.0,1.0,1.0,1.0);
+		
 	float f1 = VERTEX.x;
 	float f2 = VERTEX.z;
 	f1 = f1 * f1;
@@ -89,6 +86,7 @@ void fragment()
 	ALBEDO += texture(texture2, uv).rgb * mtVal.y;
 	ALBEDO += texture(texture3, uv).rgb * mtVal.z;
 	ALBEDO += texture(texture4, uv).rgb * mtVal.w;
+	
 	
 	if(enable_grid)
 	{
